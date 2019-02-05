@@ -1,0 +1,62 @@
+# General
+*.iml
+*.class
+*.o
+*.a
+*.so
+*.exe
+*.log
+*.prefs
+.classpath
+.project
+.metadata
+.settings
+*.idea
+antx.properties
+server_deploy
+classes
+*.pid
+*.bak
+/build/
+/bin/
+/debug/
+target/
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.rej
+*.swo
+*.swp
+*.zip
+*.vi
+*.pfx
+*~
+*.sass-cache
+*.ruby-version
+
+# OS or Editor folders
+.DS_Store
+._*
+Thumbs.db
+.cache
+.tmproj
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# Komodo
+*.komodoproject
+.komodotools
+
+# Folders to ignore
+.hg
+.svn
+.CVS
+.idea
+node_modules
+/logs/
+fencing.lock
+dependency-reduced-pom.xml
