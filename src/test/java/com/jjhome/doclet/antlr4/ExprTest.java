@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,9 +23,8 @@ public class ExprTest {
     @Test
     public void testSimple() throws IOException {
         String exp = "(prog (stat (expr 193) \\n) (stat a = (expr 5) \\n) (stat b = (expr 6) \\n) (stat (expr (expr a) + (expr (expr b) * (expr 2))) \\n) (stat (expr (expr ( (expr (expr 1) + (expr 2)) )) * (expr 3)) \\n))";
-        String str = new String(Files.readAllBytes(Paths.get(ExprTest.class.getResource("/").getPath(), "t.expr")));
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromString(str); // create a lexer that feeds off of input CharStream
+        CharStream input = CharStreams.fromStream(getClass().getResourceAsStream("/t.expr"));
         ExprLexer lexer = new ExprLexer(input); // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer); // create a parser that feeds off the tokens buffer
         ExprParser parser = new ExprParser(tokens);
@@ -38,9 +35,9 @@ public class ExprTest {
 
     @Test
     public void testEval() throws IOException {
-        String str = new String(Files.readAllBytes(Paths.get(ExprTest.class.getResource("/").getPath(), "t.expr")));
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromString(str); // create a lexer that feeds off of input CharStream
+        CharStream input = CharStreams.fromStream(getClass().getResourceAsStream("/t.expr"));
+        // create a lexer that feeds off of input CharStream
         ExprLexer lexer = new ExprLexer(input); // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer); // create a parser that feeds off the tokens buffer
         ExprParser parser = new ExprParser(tokens);
@@ -61,9 +58,8 @@ public class ExprTest {
 
     @Test
     public void testEval2() throws IOException {
-        String str = new String(Files.readAllBytes(Paths.get(ExprTest.class.getResource("/").getPath(), "t2.expr")));
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromString(str); // create a lexer that feeds off of input CharStream
+        CharStream input = CharStreams.fromStream(getClass().getResourceAsStream("/t2.expr"));
         ExprLexer lexer = new ExprLexer(input); // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer); // create a parser that feeds off the tokens buffer
         ExprParser parser = new ExprParser(tokens);

@@ -11,8 +11,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,9 +20,8 @@ public class DataTest {
     @Test
     public void testSimple23() throws IOException {
         String exp = "(file (group 2 (sequence 9 10)) (group 3 (sequence 1 2 3)))";
-        String str = new String(Files.readAllBytes(Paths.get(ExprTest.class.getResource("/").getPath(), "t.data")));
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromString(str); // create a lexer that feeds off of input CharStream
+        CharStream input = CharStreams.fromStream(getClass().getResourceAsStream("/t.data"));
         DataLexer lexer = new DataLexer(input); // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer); // create a parser that feeds off the tokens buffer
         DataParser parser = new DataParser(tokens);
@@ -36,9 +33,8 @@ public class DataTest {
     @Test
     public void testSimple37() throws IOException {
         String exp = "(file (group 3 (sequence 9 10 3)) (group 7 (sequence 1 2 3 13 344 3109 13)))";
-        String str = new String(Files.readAllBytes(Paths.get(ExprTest.class.getResource("/").getPath(), "t2.data")));
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromString(str); // create a lexer that feeds off of input CharStream
+        CharStream input = CharStreams.fromStream(getClass().getResourceAsStream("/t2.data"));
         DataLexer lexer = new DataLexer(input); // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer); // create a parser that feeds off the tokens buffer
         DataParser parser = new DataParser(tokens);
