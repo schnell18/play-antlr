@@ -1,4 +1,6 @@
 grammar Expr;
+import CommonLexerRules;
+
 prog    : stat+;
 stat    : expr NEWLINE
         | ID '=' expr NEWLINE
@@ -10,7 +12,3 @@ expr    : expr ('*' | '/') expr
         | ID
         | '(' expr ')'
         ;
-ID      : [a-zA-Z]+ ;
-INT     : [0-9]+ ;
-NEWLINE : '\r'? '\n' ;
-WS      : [ \t]+ -> skip ;
