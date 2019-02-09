@@ -29,8 +29,10 @@
     cd target/classes
     grun com.jjhome.doclet.antlr4.auto.CSV file -tokens < ../test-classes/data.csv
 
-命令grun是antlr4发行版中命令，内容如下：
+命令grun是[antlr4][1]发行版中命令，内容如下：
 
     #!/bin/sh
 
     java -cp ".:/path/to/antlr-complete.jar:$CLASSPATH" org.antlr.v4.runtime.misc.TestRig $*
+
+[1]: https://www.antlr.org/download.html
