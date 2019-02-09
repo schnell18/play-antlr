@@ -15,6 +15,8 @@
 | Rows       | 语法中嵌入行为的示例   |
 | XMLLexer   | 语法中使用模式的示例   |
 | JSON       | JSON语法示例           |
+| DOT        | graphviz dot语法示例   |
+| R          | R program语法示例      |
 
 
 ## 运行示例
@@ -34,6 +36,6 @@
 
     #!/bin/sh
 
-    java -cp ".:/path/to/antlr-complete.jar:$CLASSPATH" org.antlr.v4.runtime.misc.TestRig $*
+    java -cp ".:/path/to/antlr-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig $*
 
 [1]: https://www.antlr.org/download.html
