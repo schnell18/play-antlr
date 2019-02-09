@@ -1,38 +1,50 @@
 grammar JSON;
 
-json : object
-     | array
-     ;
+json
+    : object
+    | array
+    ;
 
-object : '{' pair (',' pair)*  '}'
-       | '{' '}'
-       ;
+object
+    : '{' pair (',' pair)*  '}' # AnObject
+    | '{' '}'                   # EmptyObject
+    ;
 
-pair : STRING ':' value ;
+pair
+    : STRING ':' value ;
 
-array : '[' value (',' value)* ']'
-      | '[' ']'
-      ;
+array
+    : '[' value (',' value)* ']' # ArrayOfValues
+    | '[' ']'                    # EmptyArray
+    ;
 
-value : STRING
-      | NUMBER
-      | object
-      | array
-      | 'true'
-      | 'false'
-      | 'null'
-      ;
+value
+    : STRING          # String
+    | NUMBER          # Atom
+    | object          # ObjectValue
+    | array           # ArrayValue
+    | 'true'          # Atom
+    | 'false'         # Atom
+    | 'null'          # Atom
+    ;
 
-STRING : '"' (ESC | ~["\\])* '"' ;
-fragment ESC : '\\' (["\\/bfnrt] |UNICODE) ;
-fragment UNICODE : 'u' HEX HEX HEX HEX ;
-fragment HEX : [0-9a-zA-Z] ;
+STRING
+    : '"' (ESC | ~["\\])* '"' ;
+fragment ESC
+    : '\\' (["\\/bfnrt] |UNICODE) ;
+fragment UNICODE
+    : 'u' HEX HEX HEX HEX ;
+fragment HEX
+    : [0-9a-zA-Z] ;
 
-NUMBER : '-'? INT '.' INT EXP?
-       | '-'? INT EXP
-       | '-'? INT
-       ;
-fragment INT : '0' | [1-9] [0-9]* ;
-fragment EXP : [Ee] [+\-]? INT ;
+NUMBER
+    : '-'? INT '.' INT EXP?
+    | '-'? INT EXP
+    | '-'? INT
+    ;
+fragment INT
+    : '0' | [1-9] [0-9]* ;
+fragment EXP
+    : [Ee] [+\-]? INT ;
 
-WS : [ \t\n\r]+ -> skip ;
+WS  : [ \t\n\r]+ -> skip ;
